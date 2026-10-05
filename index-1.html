@@ -1,27 +1,505 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="CostCraft restaurant cost and profitability calculator"><title>CostCraft — Restaurant Profit Intelligence</title><style>
-:root{--bg:#081018;--panel:#0e1822;--line:#243445;--text:#f4f7fb;--muted:#91a1b3;--accent:#dff7e9;--green:#8fe0b1;--red:#ff9d9d;--yellow:#f2d48a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 0,#173329,transparent 30%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1c2a37}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{width:38px;height:38px;border-radius:11px;background:var(--accent);color:#07110c;display:grid;place-items:center}.navlinks{display:flex;gap:22px;color:var(--muted);font-size:14px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#142230;color:#fff;padding:12px 17px;border-radius:10px;font-weight:800;cursor:pointer}.primary{background:var(--accent);color:#07110c;border-color:var(--accent)}.hero{padding:82px 0 58px}.hero-grid,.calc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}.eyebrow{color:var(--green);font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.hero h1{font-size:clamp(42px,6vw,70px);line-height:1.02;letter-spacing:-.045em;margin:13px 0 18px}.hero p,.intro{font-size:18px;color:var(--muted);max-width:650px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.preview,.calc,.card,.feature,.price{background:var(--panel);border:1px solid var(--line);border-radius:18px}.preview{padding:18px;background:linear-gradient(145deg,#12201d,#0d1620)}.preview-top{display:flex;justify-content:space-between;margin-bottom:15px}.mini,.muted{color:var(--muted);font-size:12px}.dash{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#0b141d;border:1px solid var(--line);border-radius:14px;padding:14px}.stat span,.metric span{font-size:11px;color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:3px}.bigstat{grid-column:1/-1}.section{padding:64px 0}.section h2{font-size:36px;letter-spacing:-.03em;margin:0 0 10px}.features,.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:28px}.feature,.price{padding:20px}.feature b{display:block;margin-bottom:6px}.feature span{color:var(--muted);font-size:14px}.calc{padding:22px;margin-top:28px}.card{padding:18px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.field input{width:100%;background:#091119;border:1px solid #2a3a4b;color:#fff;border-radius:9px;padding:11px;font-size:14px}.guide{display:flex;gap:10px;align-items:flex-start;background:#102019;border:1px solid #294536;border-radius:12px;padding:13px;margin:14px 0}.step{width:27px;height:27px;flex:0 0 27px;border-radius:50%;background:var(--accent);color:#07110c;display:grid;place-items:center;font-weight:900;font-size:12px}.guide b{display:block;margin-bottom:3px}.guide span{color:var(--muted);font-size:13px;line-height:1.45}.hint{color:#718293;font-size:11px;margin-top:4px;line-height:1.4}.section-note{color:var(--muted);font-size:13px;margin:7px 0 0}.ingredient-head{display:grid;grid-template-columns:1.5fr .8fr .8fr .7fr .7fr 30px;gap:7px;color:#718293;font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}.price-input{display:flex;gap:8px;align-items:center;margin-top:14px}.price-input label{color:var(--muted);font-size:12px;white-space:nowrap}.price-input input{width:120px;background:#091119;border:1px solid #2a3a4b;color:#fff;border-radius:9px;padding:11px;font-size:16px;font-weight:800}.success-note{margin-top:15px;padding:11px 12px;border-radius:10px;background:#0d1d17;border:1px solid #294536;color:#b9d8c6;font-size:12px;line-height:1.45}.ingredients{margin-top:17px}.ing{display:grid;grid-template-columns:1.5fr .8fr .8fr .7fr .7fr 30px;gap:7px;margin-bottom:8px}.ing input{min-width:0;width:100%;background:#091119;border:1px solid #2a3a4b;color:#fff;border-radius:8px;padding:9px;font-size:12px}.x{border:0;background:#24303d;color:#a9b6c4;border-radius:8px;cursor:pointer}.result{background:linear-gradient(145deg,#17251f,#101923)}.result .big{font-size:40px;font-weight:900;margin:4px 0}.label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.metric{background:#0a131b;border:1px solid var(--line);border-radius:12px;padding:12px}.metric strong{display:block;font-size:19px;margin-top:2px}.good{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}.bar{height:8px;background:#273440;border-radius:20px;margin-top:18px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:20px}.price h3{margin:0}.amount{font-size:36px;font-weight:900;margin:10px 0}.price ul{padding-left:19px;color:var(--muted);min-height:155px}.price li{margin:8px 0}.featured{border-color:#7eb596}.cta{background:linear-gradient(135deg,#14251f,#0e1822);border:1px solid #2d463a;border-radius:22px;padding:42px;text-align:center}.cta p{color:var(--muted)}footer{padding:30px 0 45px;color:#718293;font-size:12px;display:flex;justify-content:space-between;border-top:1px solid #1c2a37;margin-top:60px}@media(max-width:800px){.navlinks{display:none}.hero{padding-top:55px}.hero-grid,.calc-grid{grid-template-columns:1fr}.features,.pricing{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.ing{grid-template-columns:1fr 1fr}.ing input:first-child{grid-column:1/-1}.section{padding:48px 0}.cta{padding:28px 20px}}
-</style></head><body>
-<header class="wrap nav"><a class="brand" href="#"><span class="logo">C</span><span>CostCraft</span></a><nav class="navlinks"><a href="#calculator">Calculator</a><a href="#features">Features</a><a href="#pricing">Pricing</a></nav><a class="btn primary" href="#calculator">Try Free</a></header>
-<main><section class="hero wrap"><div class="hero-grid"><div><div class="eyebrow">Restaurant Profit Intelligence</div><h1>Know what every plate really makes.</h1><p>CostCraft turns recipes, ingredient prices, labor and menu prices into clear restaurant profitability decisions — without the spreadsheet headache.</p><div class="actions"><a class="btn primary" href="#calculator">Calculate a Recipe</a><a class="btn" href="#pricing">See Pricing</a></div><div class="trust mini">Built for independent restaurants, chefs, operators and growing food businesses.</div></div><div class="preview"><div class="preview-top"><strong>Profit Snapshot</strong><span class="mini">LIVE DEMO</span></div><div class="dash"><div class="stat bigstat"><span>Recommended menu price</span><strong>$16.20</strong><small class="good">30.0% target food cost</small></div><div class="stat"><span>Food cost</span><strong>$4.86</strong></div><div class="stat"><span>Contribution</span><strong>$9.39</strong></div><div class="stat"><span>Food cost %</span><strong class="good">30.0%</strong></div><div class="stat"><span>Weekly units</span><strong>180</strong></div></div></div></div></section>
-<section id="features" class="section wrap"><h2>Everything you need to protect margin.</h2><p class="intro">Start with recipe costing today. Grow into menu engineering, labor, inventory and supplier intelligence as your operation grows.</p><div class="features"><div class="feature"><b>Recipe Costing</b><span>Ingredient pack prices, usage, yields and portions calculate true plate cost.</span></div><div class="feature"><b>Smart Pricing</b><span>Set a target food-cost percentage and instantly see the selling price you need.</span></div><div class="feature"><b>Menu Health</b><span>Find dishes that need repricing and identify your strongest contribution opportunities.</span></div><div class="feature"><b>Prime Cost</b><span>Combine food, beverage and direct labor to understand operational health.</span></div><div class="feature"><b>Break-Even</b><span>Calculate daily orders and sales required to cover fixed costs.</span></div><div class="feature"><b>Built to Expand</b><span>Designed for future inventory, invoice scanning, POS integrations and multi-location reporting.</span></div></div></section>
-<section id="calculator" class="section wrap"><h2>Free restaurant cost calculator</h2><p class="intro">No spreadsheet experience needed. Follow the 3 steps below and CostCraft will calculate your plate cost and suggested menu price.</p><div class="calc"><div class="calc-grid"><div class="card"><h3>Build your recipe</h3><div class="guide"><div class="step">1</div><div><b>Name your recipe</b><span>Enter the dish name and choose the food-cost percentage you want to hit. <strong>30%</strong> is a common starting point for many restaurants.</span></div></div><div class="fields"><div class="field"><label>Recipe name</label><input id="recipeName" value="Signature Chicken Sandwich"><div class="hint">Example: Chicken Alfredo</div></div><div class="field"><label>Target food cost %</label><input id="target" type="number" value="30" min="1" max="99"><div class="hint">Your goal for ingredient cost as a % of selling price.</div></div><div class="field"><label>Labor / portion ($) <span class="muted">optional</span></label><input id="labor" type="number" value="1.25" min="0" step=".01"><div class="hint">Direct labor for one serving. Use $0 if you don't want to include it.</div></div><div class="field"><label>Packaging / portion ($) <span class="muted">optional</span></label><input id="pack" type="number" value=".45" min="0" step=".01"><div class="hint">Box, cup, bag, lid, etc. Use $0 for dine-in.</div></div></div><div class="guide"><div class="step">2</div><div><b>Add your ingredients</b><span>For each ingredient, enter what you paid for the package, how much the package contains, and how much goes into <strong>one serving</strong>.</span></div></div><div class="ingredient-head"><span>Ingredient</span><span>Pack $</span><span>Pack Qty</span><span>Used</span><span>Yield %</span><span></span></div><div class="ingredients"><div id="ingredients"></div><button class="btn" id="add" type="button">+ Add another ingredient</button><p class="section-note">Example: a $10 bag of cheese contains 40 oz, and your recipe uses 2 oz → Pack $ = 10, Pack Qty = 40, Used = 2.</p></div><div class="guide"><div class="step">3</div><div><b>Check your answer</b><span>The right side shows your true ingredient cost, recommended selling price, and contribution after labor and packaging.</span></div></div></div><div class="card result"><div class="label">Recommended menu price</div><div class="big" id="recommended">$0.00</div><div class="mini">Based on your target food cost.</div><div class="price-input"><label for="menuPrice">Your menu price</label><input id="menuPrice" type="number" value="16" min="0" step=".01"></div><div class="metrics"><div class="metric"><span>Food cost / portion</span><strong id="foodCost">$0.00</strong></div><div class="metric"><span>Food cost % at your price</span><strong id="foodPct">0.0%</strong></div><div class="metric"><span>Variable cost</span><strong id="variable">$0.00</strong></div><div class="metric"><span>Contribution at your price</span><strong id="contribution">$0.00</strong></div></div><div class="bar"><i id="bar"></i></div><div class="success-note"><strong>What this means:</strong> If your food cost is above your target, raise the menu price, lower ingredient cost, improve yield, or reduce portion size.</div></div></div></div></section>
-<section id="pricing" class="section wrap"><h2>Simple pricing.</h2><p class="intro">Launch with a free calculator and give operators a reason to upgrade when they need more.</p><div class="pricing"><div class="price"><h3>Free</h3><div class="amount">$0</div><div class="mini">Forever</div><ul><li>Recipe calculator</li><li>Basic menu pricing</li><li>Prime-cost tools</li><li>Break-even calculator</li></ul><a class="btn primary" href="#calculator">Start Free</a></div><div class="price featured"><h3>Pro</h3><div class="amount">$29</div><div class="mini">per month</div><ul><li>Unlimited recipes</li><li>Ingredient database</li><li>Yield & waste tracking</li><li>Menu engineering</li><li>PDF recipe cards</li></ul><button class="btn primary" type="button" onclick="alert('Stripe Checkout can be connected here when you are ready to accept payments.')">Join Pro</button></div><div class="price"><h3>Pro+</h3><div class="amount">$59</div><div class="mini">per month</div><ul><li>Everything in Pro</li><li>Invoice price tracking</li><li>Actual vs theoretical cost</li><li>Advanced reporting</li><li>Multi-location tools</li></ul><button class="btn" type="button" onclick="alert('Pro+ checkout can be connected here when you are ready.')">Coming Soon</button></div></div></section>
-<section class="section wrap"><div class="cta"><div class="eyebrow">Launch today</div><h2>Stop guessing. Start costing.</h2><p>Use the calculator free, then build your operation around numbers you can trust.</p><a class="btn primary" href="#calculator">Build My First Recipe</a></div></section></main>
-<footer class="wrap"><span>© 2026 CostCraft. All rights reserved.</span><span>Restaurant profitability tools for modern operators.</span></footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CostCraft | Restaurant Food Cost Calculator</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, #111827, #1e293b);
+    padding: 35px 20px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #22c55e;
+}
+
+.tagline {
+    margin-top: 8px;
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 30px auto 60px;
+}
+
+.card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
+.card h2 {
+    margin-bottom: 8px;
+}
+
+.help {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+label {
+    display: block;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 9px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #22c55e;
+}
+
+button {
+    border: none;
+    border-radius: 9px;
+    padding: 13px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.calculate {
+    background: #22c55e;
+    color: #052e16;
+    margin-top: 20px;
+}
+
+.calculate:hover {
+    background: #16a34a;
+    color: white;
+}
+
+.reset {
+    background: #475569;
+    color: white;
+    margin-left: 8px;
+}
+
+.reset:hover {
+    background: #64748b;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.result {
+    background: #0f172a;
+    border: 1px solid #334155;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.result-title {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.result-value {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.good {
+    color: #22c55e;
+}
+
+.warning {
+    color: #facc15;
+}
+
+.bad {
+    color: #ef4444;
+}
+
+.bar-container {
+    margin-top: 25px;
+}
+
+.bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    font-size: 13px;
+    color: #cbd5e1;
+}
+
+.bar {
+    height: 13px;
+    background: #0f172a;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #22c55e;
+    transition: width .5s;
+}
+
+.tip {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #172554;
+    border: 1px solid #1d4ed8;
+    color: #bfdbfe;
+    line-height: 1.5;
+}
+
+footer {
+    text-align: center;
+    color: #64748b;
+    padding: 30px;
+    font-size: 13px;
+}
+
+@media(max-width:600px) {
+    .logo {
+        font-size: 30px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .reset {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Cost<span>Craft</span></div>
+    <div class="tagline">Simple restaurant food-cost calculator</div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>🍽️ Calculate Your Menu Item</h2>
+
+        <p class="help">
+            Enter the cost of ingredients, portion size, and selling price.
+            CostCraft will show your food cost percentage and estimated profit.
+        </p>
+
+        <div class="grid">
+
+            <div>
+                <label>Ingredient Cost ($)</label>
+                <input type="number" id="ingredientCost" placeholder="Example: 4.50" step="0.01">
+            </div>
+
+            <div>
+                <label>Labor Cost Per Portion ($)</label>
+                <input type="number" id="laborCost" placeholder="Example: 2.00" step="0.01">
+            </div>
+
+            <div>
+                <label>Other Cost Per Portion ($)</label>
+                <input type="number" id="otherCost" placeholder="Example: 0.50" step="0.01">
+            </div>
+
+            <div>
+                <label>Menu Selling Price ($)</label>
+                <input type="number" id="sellingPrice" placeholder="Example: 18.00" step="0.01">
+            </div>
+
+        </div>
+
+        <button class="calculate" onclick="calculateCost()">Calculate Cost</button>
+        <button class="reset" onclick="resetCalculator()">Reset</button>
+    </div>
+
+
+    <div class="card">
+
+        <h2>📊 Your Results</h2>
+
+        <p class="help">
+            Here's what your menu item is actually costing you.
+        </p>
+
+        <div class="results">
+
+            <div class="result">
+                <div class="result-title">Food Cost %</div>
+                <div class="result-value" id="foodCostPercent">0%</div>
+            </div>
+
+            <div class="result">
+                <div class="result-title">Total Cost / Portion</div>
+                <div class="result-value" id="totalCost">$0.00</div>
+            </div>
+
+            <div class="result">
+                <div class="result-title">Gross Profit / Portion</div>
+                <div class="result-value good" id="grossProfit">$0.00</div>
+            </div>
+
+            <div class="result">
+                <div class="result-title">Profit Margin</div>
+                <div class="result-value" id="profitMargin">0%</div>
+            </div>
+
+        </div>
+
+        <div class="bar-container">
+
+            <div class="bar-label">
+                <span>Food Cost</span>
+                <span id="barPercent">0%</span>
+            </div>
+
+            <div class="bar">
+                <div class="bar-fill" id="costBar"></div>
+            </div>
+
+        </div>
+
+        <div class="tip" id="recommendation">
+            Enter your numbers above to see your recommendation.
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>💡 How To Use CostCraft</h2>
+
+        <div class="help" style="line-height:1.8;">
+
+            <strong>Step 1:</strong> Add the cost of the ingredients used in one portion.<br>
+
+            <strong>Step 2:</strong> Add your estimated labor cost for that portion.<br>
+
+            <strong>Step 3:</strong> Add other costs such as packaging or supplies.<br>
+
+            <strong>Step 4:</strong> Enter the menu selling price.<br>
+
+            <strong>Step 5:</strong> Click Calculate Cost.<br><br>
+
+            <strong>Tip:</strong> Many restaurants aim for a food cost percentage
+            somewhere around 25–35%, but your ideal target depends on your concept,
+            labor costs, overhead, menu mix, and pricing strategy.
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 CostCraft — Restaurant Cost Calculator
+</footer>
+
+
 <script>
-const rows=[{name:'Chicken breast',pack:89,qty:20,used:1,yield:92},{name:'Brioche bun',pack:38,qty:24,used:1,yield:100},{name:'Cheddar',pack:18,qty:2,used:.08,yield:100},{name:'House sauce',pack:12,qty:64,used:1,yield:100}];
-const $=id=>document.getElementById(id); const money=n=>'$'+(Number.isFinite(n)?n:0).toFixed(2);
-function renderRows(){
- $('ingredients').innerHTML=rows.map((r,i)=>`<div class="ing"><input data-i="${i}" data-k="name" value="${r.name}" aria-label="Ingredient name"><input data-i="${i}" data-k="pack" type="number" min="0" step=".01" value="${r.pack}" aria-label="Package price"><input data-i="${i}" data-k="qty" type="number" min=".001" step=".01" value="${r.qty}" aria-label="Package quantity"><input data-i="${i}" data-k="used" type="number" min="0" step=".01" value="${r.used}" aria-label="Quantity used"><input data-i="${i}" data-k="yield" type="number" min="1" max="100" value="${r.yield}" aria-label="Yield percentage"><button class="x" data-remove="${i}" type="button" aria-label="Remove ingredient">×</button></div>`).join('');
- document.querySelectorAll('[data-i]').forEach(el=>el.addEventListener('input',e=>{const i=+e.target.dataset.i,k=e.target.dataset.k;rows[i][k]=k==='name'?e.target.value:Math.max(0,parseFloat(e.target.value)||0);calculate()}));
- document.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{if(rows.length>1){rows.splice(+b.dataset.remove,1);renderRows();calculate()}}));
+
+function calculateCost() {
+
+    const ingredient =
+        parseFloat(document.getElementById("ingredientCost").value) || 0;
+
+    const labor =
+        parseFloat(document.getElementById("laborCost").value) || 0;
+
+    const other =
+        parseFloat(document.getElementById("otherCost").value) || 0;
+
+    const price =
+        parseFloat(document.getElementById("sellingPrice").value) || 0;
+
+
+    const totalCost = ingredient + labor + other;
+
+    let foodCostPercent = 0;
+
+    if (price > 0) {
+        foodCostPercent = (ingredient / price) * 100;
+    }
+
+    let grossProfit = price - totalCost;
+
+    let profitMargin = 0;
+
+    if (price > 0) {
+        profitMargin = (grossProfit / price) * 100;
+    }
+
+
+    document.getElementById("foodCostPercent").textContent =
+        foodCostPercent.toFixed(1) + "%";
+
+    document.getElementById("totalCost").textContent =
+        "$" + totalCost.toFixed(2);
+
+    document.getElementById("grossProfit").textContent =
+        "$" + grossProfit.toFixed(2);
+
+    document.getElementById("profitMargin").textContent =
+        profitMargin.toFixed(1) + "%";
+
+    document.getElementById("barPercent").textContent =
+        foodCostPercent.toFixed(1) + "%";
+
+
+    const bar = document.getElementById("costBar");
+
+    bar.style.width = Math.min(foodCostPercent, 100) + "%";
+
+
+    const foodDisplay =
+        document.getElementById("foodCostPercent");
+
+    const marginDisplay =
+        document.getElementById("profitMargin");
+
+
+    foodDisplay.className = "result-value";
+
+    marginDisplay.className = "result-value";
+
+
+    if (foodCostPercent <= 30) {
+
+        foodDisplay.classList.add("good");
+
+    } else if (foodCostPercent <= 35) {
+
+        foodDisplay.classList.add("warning");
+
+    } else {
+
+        foodDisplay.classList.add("bad");
+
+    }
+
+
+    if (profitMargin >= 60) {
+
+        marginDisplay.classList.add("good");
+
+    } else if (profitMargin >= 40) {
+
+        marginDisplay.classList.add("warning");
+
+    } else {
+
+        marginDisplay.classList.add("bad");
+
+    }
+
+
+    const recommendation =
+        document.getElementById("recommendation");
+
+
+    if (price <= 0) {
+
+        recommendation.innerHTML =
+            "Enter a selling price to calculate your results.";
+
+    } else if (foodCostPercent <= 30) {
+
+        recommendation.innerHTML =
+            "✅ <strong>Looking good!</strong> Your ingredient cost is at or below 30% of your selling price.";
+
+    } else if (foodCostPercent <= 35) {
+
+        recommendation.innerHTML =
+            "⚠️ <strong>Watch your food cost.</strong> You're in a common restaurant target range, but there may be room to improve pricing or portion cost.";
+
+    } else {
+
+        recommendation.innerHTML =
+            "🚨 <strong>Food cost is high.</strong> Consider reviewing portions, ingredient pricing, waste, or your menu price.";
+
+    }
+
 }
-function calculate(){
- let food=rows.reduce((s,r)=>s+(r.qty>0?r.pack/r.qty:0)*r.used/(Math.max(r.yield,1)/100),0);
- let target=Math.min(99,Math.max(1,parseFloat($('target').value)||30)), labor=Math.max(0,parseFloat($('labor').value)||0), pack=Math.max(0,parseFloat($('pack').value)||0), menu=Math.max(0,parseFloat($('menuPrice').value)||0);
- let recommended=food/(target/100), variable=food+labor+pack, pct=menu>0?food/menu*100:0, contribution=menu-variable;
- $('foodCost').textContent=money(food); $('recommended').textContent=money(recommended); $('foodPct').textContent=pct.toFixed(1)+'%'; $('variable').textContent=money(variable); $('contribution').textContent=money(contribution); $('bar').style.width=Math.min(100,pct)+'%'; $('foodPct').className=pct<=target?'good':pct<=target+5?'warn':'bad'; $('contribution').className=contribution>=0?'good':'bad';
+
+
+function resetCalculator() {
+
+    document.getElementById("ingredientCost").value = "";
+    document.getElementById("laborCost").value = "";
+    document.getElementById("otherCost").value = "";
+    document.getElementById("sellingPrice").value = "";
+
+    document.getElementById("foodCostPercent").textContent = "0%";
+    document.getElementById("totalCost").textContent = "$0.00";
+    document.getElementById("grossProfit").textContent = "$0.00";
+    document.getElementById("profitMargin").textContent = "0%";
+    document.getElementById("barPercent").textContent = "0%";
+
+    document.getElementById("costBar").style.width = "0%";
+
+    document.getElementById("recommendation").innerHTML =
+        "Enter your numbers above to see your recommendation.";
+
 }
-$('add').addEventListener('click',()=>{rows.push({name:'New ingredient',pack:0,qty:1,used:0,yield:100});renderRows();calculate()});
-['target','labor','pack','menuPrice'].forEach(id=>$(id).addEventListener('input',calculate)); renderRows(); calculate();
-</script></body></html>
+
+</script>
+
+</body>
+</html>
